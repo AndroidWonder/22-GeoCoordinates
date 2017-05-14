@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/myAbsoluteLayout"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="#ffffffff"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:map="http://schemas.android.com/apk/res-auto"
+    >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Reverse GeoCoding [Coordinates to Address] "
+    android:layout_marginLeft="5dip"
+    />
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="1dip"
+    android:background="#ffaaaaaa" />
+
+
+<LinearLayout
+    android:id="@+id/LinearLayout03"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude:    "
+        android:layout_marginLeft="5dip"
+        />
+
+    <EditText
+        android:id="@+id/txtLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginRight="5dip"
+        android:inputType="numberSigned|numberDecimal"
+        android:textSize="12sp"
+        />
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/LinearLayout04"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude: "
+        android:layout_marginLeft="5dip"
+        />
+    <EditText
+        android:id="@+id/txtLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginRight="5dip"
+        android:inputType="numberSigned|numberDecimal"
+        android:textSize="12sp"
+        />
+
+</LinearLayout>
+<View
+    android:layout_width="fill_parent"
+    android:layout_height="1dip"
+    android:background="#ffaaaaaa" />
+
+
+<RelativeLayout
+    android:id="@+id/LinearLayout02"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:id="@+id/myAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint=" Your current address is ..."
+        android:textSize="14sp"
+        android:layout_margin="3dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="#ffffffff"
+        />
+
+    <Button
+        android:id="@+id/myBtnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        />
+
+</RelativeLayout>
+
+
+   <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.course.example.geocoordinates.MapsActivity" />
+
+
+
+
+</LinearLayout>
