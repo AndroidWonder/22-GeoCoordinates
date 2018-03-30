@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +27,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Button btnSearch;
     private TextView txtAddress;
-    private TextView txtLatitude;
-    private TextView txtLongitude;
+    private EditText txtLatitude;
+    private EditText txtLongitude;
     private Geocoder gc = null;
     private Marker mark = null;
 
@@ -51,8 +52,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gc = new Geocoder(this);
 
         txtAddress = (TextView) findViewById(R.id.myAddress);
-        txtLatitude = (TextView) findViewById(R.id.txtLatitude);
-        txtLongitude = (TextView) findViewById(R.id.txtLongitude);
+        txtLatitude = (EditText) findViewById(R.id.txtLatitude);
+        txtLongitude = (EditText) findViewById(R.id.txtLongitude);
 
         // locate initial coordinates at Bentley
         txtLatitude.setText(Double.toString(latitude));
@@ -83,21 +84,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     //get and display street address; third parameter is max number of results wanted
                     List<Address> addresses = gc.getFromLocation(latitude, longitude, 3);
-                    String st = "";
+                    String st = null;
 
                     //loop on addresses
                     for (Address addr : addresses) {
 
+                        st = "";
                         //loop to get entire address line
                         for (int i = 0; i < addr.getMaxAddressLineIndex(); i++) {
                             st += addr.getAddressLine(i) + "\n";
                             Toast.makeText(getApplicationContext(), st, Toast.LENGTH_LONG).show();
                         }
 
-                        st = "";
-                        Toast.makeText(getApplicationContext(), "Address Complete", Toast.LENGTH_LONG).show();
-                    }
 
+                        //Toast.makeText(getApplicationContext(), "Address Complete", Toast.LENGTH_LONG).show();
+                    }
+                    //set last address on address TextView widget
+                    txtAddress.setText(st);
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
