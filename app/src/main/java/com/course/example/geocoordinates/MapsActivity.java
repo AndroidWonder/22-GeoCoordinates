@@ -1,9 +1,13 @@
+//Go from latituse/longitude to street addresses.
+//The Log will contain all the street addresses found for this lat/long value.
+
 package com.course.example.geocoordinates;
 
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +20,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -30,7 +33,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private EditText txtLatitude;
     private EditText txtLongitude;
     private Geocoder gc = null;
-    private Marker mark = null;
+    private String TAG = "SIZE";
 
     // locate initial coordinates at Bentley
     double latitude = 42.3889167;
@@ -79,28 +82,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
                     //reset center of map
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 17.0f));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 10.0f));
 
-
-                    //get and display street address; third parameter is max number of results wanted
-                    List<Address> addresses = gc.getFromLocation(latitude, longitude, 3);
+                    //get and display street addresses; third parameter is max number of results wanted
+                    List<Address> addresses = gc.getFromLocation(latitude, longitude, 5);
                     String st = null;
 
                     //loop on addresses
-                    for (Address addr : addresses) {
+                    for (int j = 0; j < addresses.size(); j++) {
 
-                        st = "";
-                        //loop to get entire address line
-                        for (int i = 0; i < addr.getMaxAddressLineIndex(); i++) {
-                            st += addr.getAddressLine(i) + "\n";
-                            Toast.makeText(getApplicationContext(), st, Toast.LENGTH_LONG).show();
+                        Address address = addresses.get(j);
+
+                        //test if no address returned; -1 for no address; 0 for address
+                        if (address.getMaxAddressLineIndex() == -1) {
+                            Toast.makeText(getApplicationContext(), "No address returned", Toast.LENGTH_LONG).show();
+                        } else {
+                            String addr = address.getAddressLine(0);
+                            Log.e(TAG, "Street address: " + addr);
+                            Toast.makeText(getApplicationContext(), addr, Toast.LENGTH_LONG).show();
+                            txtAddress.setText(addr);
                         }
 
-
-                        //Toast.makeText(getApplicationContext(), "Address Complete", Toast.LENGTH_LONG).show();
                     }
-                    //set last address on address TextView widget
-                    txtAddress.setText(st);
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -110,7 +113,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }); // btnSearch
 
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
