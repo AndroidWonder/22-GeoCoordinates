@@ -1,4 +1,4 @@
-//Go from latituse/longitude to street addresses.
+//Go from latitude/longitude to street addresses and locations.
 //The Log will contain all the street addresses found for this lat/long value.
 
 package com.course.example.geocoordinates;
