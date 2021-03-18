@@ -5,7 +5,7 @@ package com.course.example.geocoordinates;
 
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
