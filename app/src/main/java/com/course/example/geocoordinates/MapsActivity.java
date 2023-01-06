@@ -82,10 +82,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
                     //reset center of map
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 10.0f));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 12.0f));
 
                     //get and display street addresses; third parameter is max number of results wanted
-                    List<Address> addresses = gc.getFromLocation(latitude, longitude, 5);
+                    List<Address> addresses = gc.getFromLocation(latitude, longitude, 7);
                     String st = null;
 
                     //loop on addresses

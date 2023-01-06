@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 32
+    compileSdk 33
     defaultConfig {
         applicationId "com.course.example.geocoordinates"
         minSdkVersion 26
@@ -16,7 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '32.0.0'
+    buildToolsVersion '33.0.1'
 
 }
 
